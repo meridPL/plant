@@ -4,8 +4,9 @@ import {
   View,
   Image,
 } from 'react-native';
-import { TestButton } from "./TestButton";
+import TestButton from "./TestButton";
 import { colorPallete, styles } from '../styles';
+import { observer } from 'mobx-react-lite';
 
 /** This is template of view for a question 
  * qData.position - question's number
@@ -14,11 +15,13 @@ import { colorPallete, styles } from '../styles';
  * onActionFalse - action if the label and the image do not match 
  * onActiontrue - action if the label and the image do match 
 */
-export const TestView = ({ qData, onActionFalse, onActionTrue }) => (
+const TestView = ({ qData, onActionFalse, onActionTrue }) => {
+  return (
     <View>
       <View>
         <Text style={styles.testViewLabel}>Question {qData.position}</Text>
         <Image
+          //@ts-ignore
           loadingIndicatorSource={
             <View>
               <Text>Loading...</Text>
@@ -41,4 +44,6 @@ export const TestView = ({ qData, onActionFalse, onActionTrue }) => (
       </View>
     </View>
   );
+}
 
+export default observer(TestView)
